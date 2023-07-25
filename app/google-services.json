@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "53707790089",
+    "project_id": "richreach-7dc33",
+    "storage_bucket": "richreach-7dc33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53707790089:android:76740b0f88062dfb75e5d8",
+        "android_client_info": {
+          "package_name": "com.example.richreachassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53707790089-hr6oq240agf4ncgrq4olp3loga5b67hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.richreachassignment",
+            "certificate_hash": "0799b6f245623a42d66a70cc0e8c8861137c8b9c"
+          }
+        },
+        {
+          "client_id": "53707790089-4ok6n526fr6l648daqqifo4jlfomek03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_0ZWtEFbvKunEoTDsfWFwoM1PfX1vHEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53707790089-4ok6n526fr6l648daqqifo4jlfomek03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
