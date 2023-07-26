@@ -2,6 +2,7 @@ package com.example.richreachassignment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.richreachassignment.repository.Repository
 
 class ViewModelFactory(private val viewModelProviderRepository: Repository) :
     ViewModelProvider.Factory {

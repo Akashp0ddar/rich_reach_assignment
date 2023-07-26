@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.richreachassignment.databinding.FragmentLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -26,11 +26,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var googleSignClient: GoogleSignInClient
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
 
-    private val viewModel by activityViewModels<MainViewModel> {
-        ViewModelFactory(
-            viewModelProviderRepository = Repository()
-        )
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +47,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         "registerLaunchers:${result.data} ${result.resultCode} ${
                             GoogleSignIn.getSignedInAccountFromIntent(
                                 result.data
-                            )
+                            ).exception
                         }"
                     )
                 }
@@ -62,12 +57,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun handleResult(signedInAccountFromIntent: Task<GoogleSignInAccount>) {
         if (signedInAccountFromIntent.isSuccessful) {
+
             Toast.makeText(
                 requireContext(),
                 "${signedInAccountFromIntent.result.displayName}",
                 Toast.LENGTH_SHORT
             ).show()
-            updateUi(signedInAccountFromIntent.result)
+
+            val credential =
+                GoogleAuthProvider.getCredential(signedInAccountFromIntent.result.idToken, null)
+            auth.signInWithCredential(credential).addOnCompleteListener { taskAuthResult ->
+                if (taskAuthResult.isSuccessful) {
+                    Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                } else {
+                    Toast.makeText(requireContext(), "Not saved", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
             Toast.makeText(
                 requireContext(),
@@ -78,16 +84,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
     }
 
-    private fun updateUi(result: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(result.idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener { taskAuthResult ->
-            if (taskAuthResult.isSuccessful) {
-                Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Not saved", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     private fun fireBaseSetup() {
         auth = FirebaseAuth.getInstance()
