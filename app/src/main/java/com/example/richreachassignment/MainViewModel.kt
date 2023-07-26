@@ -20,6 +20,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     val employees: MutableLiveData<List<Employees>> = MutableLiveData()
     val salaries: MutableLiveData<List<Salaries>> = MutableLiveData()
     val titles: MutableLiveData<List<Titles>> = MutableLiveData()
+    var departmentManagerList: List<DepartmentManager> = listOf()
+    var departmentsList: List<Departments> = listOf()
+    var empDepartmentsList: List<EmpDepartments> = listOf()
+    var employeesList: List<Employees> = listOf()
+    var salariesList: List<Salaries> = listOf()
+    var titlesList: List<Titles> = listOf()
 
     fun getDepartmentManagers() {
         viewModelScope.launch(Dispatchers.IO) {
