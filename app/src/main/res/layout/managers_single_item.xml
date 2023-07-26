@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/outline_bg_black">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeNameDecoRation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/employee_name"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeNameResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvEmployeeNameDecoRation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvEmployeeNameDecoRation"
+        tools:text="Perry Shimshoni" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitleDecoration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/title"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvEmployeeNameDecoRation"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeNameDecoRation" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitleResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitleDecoration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitleDecoration"
+        tools:text="Tech Leader" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDepartmentDecoration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/department"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTitleDecoration"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleDecoration" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDepartmentResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvDepartmentDecoration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvDepartmentDecoration"
+        tools:text="Development" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTimeDecoration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/time_as_manager"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvDepartmentDecoration"
+        app:layout_constraintTop_toBottomOf="@id/tvDepartmentDecoration" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTimeAsManagerResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimeDecoration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTimeDecoration"
+        tools:text="12 month" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCurrentlyActiveDecoration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/status"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTimeDecoration"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeDecoration" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvcurrentlyActiveResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvCurrentlyActiveDecoration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvCurrentlyActiveDecoration"
+        tools:text="Active" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
