@@ -34,6 +34,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
 
+
     private fun onClick() {
         binding.btnFeatureOne.setOnClickListener {
             setUpAdapter()
@@ -41,12 +42,21 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun apiCalls() {
-        viewModel.getDepartmentManagers()
-        viewModel.getDepartments()
-        viewModel.getEmpDepartments()
-        viewModel.getEmployees()
-        viewModel.getSalaries()
-        viewModel.getTitles()
+        if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+            adapter =
+                ManagersListAdapter(detailsListAdapter = viewModel.getDetailsListFromDataBase())
+            binding.rvShowList.adapter = adapter
+            binding.pbLoading.visibility = View.GONE
+            binding.tvButtonClick.visibility = View.GONE
+        } else {
+            viewModel.getDepartmentManagers()
+            viewModel.getDepartments()
+            viewModel.getEmpDepartments()
+            viewModel.getEmployees()
+            viewModel.getSalaries()
+            viewModel.getTitles()
+            viewModel.initDataBase(context = requireContext())
+        }
 
     }
 
@@ -94,10 +104,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             binding.pbLoading.visibility = View.VISIBLE
         }
 
+
         if (viewModel.detailsList.isNotEmpty()) {
 
             adapter = ManagersListAdapter(
-                detailsListAdapter = viewModel.detailsList
+                detailsListAdapter = viewModel.getDetailsListFromDataBase()
             )
             binding.rvShowList.adapter = adapter
 

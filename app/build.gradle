@@ -60,4 +60,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2'
     //viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
+    //SqlLite
+    implementation 'androidx.sqlite:sqlite-ktx:2.3.1'
 }

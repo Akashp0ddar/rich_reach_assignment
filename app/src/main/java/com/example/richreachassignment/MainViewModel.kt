@@ -1,5 +1,6 @@
 package com.example.richreachassignment
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,6 +32,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     var salariesList: List<Salaries> = listOf()
     var titlesList: List<Titles> = listOf()
     var detailsList: ArrayList<Details> = arrayListOf()
+    private lateinit var database: DetailsDatabase
+
+    fun initDataBase(context: Context) {
+        database = DetailsDatabase(context = context)
+    }
+
 
     fun getDepartmentManagers() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -127,8 +134,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
                 detailsList.add(details)
             }
 
-
         }
+        database.insertDetails(detailsList)
+    }
+
+    fun getDetailsListFromDataBase(): ArrayList<Details> {
+        return database.getAllDetails()
     }
 
 

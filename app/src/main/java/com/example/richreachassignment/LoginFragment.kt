@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.richreachassignment.databinding.FragmentLoginBinding
+import com.example.richreachassignment.repository.Repository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -25,11 +27,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignClient: GoogleSignInClient
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
+    private val viewModel by activityViewModels<MainViewModel> {
+        ViewModelFactory(
+            viewModelProviderRepository = Repository()
+        )
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
+        viewModel.initDataBase(context = requireContext())
         registerLaunchers()
         fireBaseSetup()
         onClick()
@@ -98,7 +106,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun onClick() {
 
         binding.btnLogin.setOnClickListener {
-            signInGoogle()
+            if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+            } else {
+                signInGoogle()
+            }
         }
 
     }
