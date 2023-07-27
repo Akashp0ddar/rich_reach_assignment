@@ -36,7 +36,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private fun customQuerySetUp() {
         if (viewModel.isQueryNeeded) {
             adapter =
-                ManagersListAdapter(detailsListAdapter = viewModel.getDetailsListFromDataBase())
+                ManagersListAdapter(
+                    detailsListAdapter = viewModel.getDetailsListCustomQuery(
+                        viewModel.query
+                    )!!
+                )
             binding.rvShowList.adapter = adapter
             adapter.notifyDataSetChanged()
             binding.pbLoading.visibility = View.GONE
