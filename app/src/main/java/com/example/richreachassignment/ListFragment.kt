@@ -3,10 +3,10 @@ package com.example.richreachassignment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.richreachassignment.databinding.FragmentListBinding
-import com.example.richreachassignment.models.Details
 import com.example.richreachassignment.repository.Repository
 
 
@@ -17,8 +17,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             viewModelProviderRepository = Repository()
         )
     }
+    private lateinit var adapter: ManagersListAdapter
 
-    private lateinit var details: Details
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,12 +28,14 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         onClick()
     }
 
-    private fun onClick() {
 
+    private fun onClick() {
+        binding.btnFeatureOne.setOnClickListener {
+            setUpAdapter()
+        }
     }
 
     private fun apiCalls() {
-        details = Details()
         viewModel.getDepartmentManagers()
         viewModel.getDepartments()
         viewModel.getEmpDepartments()
@@ -47,11 +49,13 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         viewModel.departmentManagerResponse.observe(viewLifecycleOwner) { listOfDepartmentManager ->
             Log.e("onViewCreated: ", listOfDepartmentManager.toString())
             viewModel.departmentManagerList = listOfDepartmentManager
+
         }
 
         viewModel.departments.observe(viewLifecycleOwner) { listOfDepartments ->
             Log.d("onViewCreated", listOfDepartments.toString())
             viewModel.departmentsList = listOfDepartments
+
         }
 
         viewModel.empDepartments.observe(viewLifecycleOwner) { listOfEmpDepartments ->
@@ -75,6 +79,23 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             Log.d("onViewCreated", listOfTitles.toString())
             viewModel.titlesList = listOfTitles
         }
+    }
+
+    private fun setUpAdapter() {
+        viewModel.setUpDetails()
+        if (viewModel.detailsList.isNotEmpty()) {
+            adapter = ManagersListAdapter(
+                detailsListAdapter = viewModel.detailsList
+            )
+            binding.rvShowList.adapter = adapter
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Please wait for data to be loaded",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        Log.d("detailsList", "setUpAdapter: ${viewModel.detailsList}")
     }
 
 

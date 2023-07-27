@@ -1,9 +1,10 @@
 package com.example.richreachassignment.models
 
 data class Details(
-    val employeeName: String? = null,
-    val employeeTitle: String? = null,
-    val employeeDepartment: String? = null,
-    val timeSpentAsManager: String? = null,
-    val isActive: Boolean? = null
+    var employeeName: String? = null,
+    var employeeNumber: Int? = null,
+    var employeeTitle: String? = null,
+    var employeeDepartment: String? = null,
+    var timeSpentAsManager: String? = null,
+    var isActive: Boolean? = null
 )

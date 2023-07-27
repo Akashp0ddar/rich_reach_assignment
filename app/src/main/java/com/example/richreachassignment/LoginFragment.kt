@@ -64,6 +64,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 Toast.LENGTH_SHORT
             ).show()
 
+
             val credential =
                 GoogleAuthProvider.getCredential(signedInAccountFromIntent.result.idToken, null)
             auth.signInWithCredential(credential).addOnCompleteListener { taskAuthResult ->
@@ -71,9 +72,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_listFragment)
                 } else {
-                    Toast.makeText(requireContext(), "Not saved", Toast.LENGTH_SHORT).show()
+                    Log.d("firebaseError", "handleResult:${taskAuthResult.exception} ")
                 }
             }
+
         } else {
             Toast.makeText(
                 requireContext(),
