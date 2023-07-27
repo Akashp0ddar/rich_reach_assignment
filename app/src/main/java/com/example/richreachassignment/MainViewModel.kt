@@ -71,7 +71,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     }
 
 
-    fun isEmployeeWorking(employee: Titles): Boolean {
+    private fun isEmployeeWorking(employee: Titles): Boolean {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val fromDate = dateFormat.parse(employee.startDate)
         val toDate = dateFormat.parse(employee.endDate)
@@ -81,7 +81,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     }
 
 
-    fun getYearDifference(fromDate: String, toDate: String): String {
+    private fun getYearDifference(fromDate: String, toDate: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val fromDateParsed = dateFormat.parse(fromDate)
         val toDateParsed = dateFormat.parse(toDate)

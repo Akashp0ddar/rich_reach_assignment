@@ -40,7 +40,29 @@
         app:layout_constraintBottom_toTopOf="@id/btnQueryBuilder"
         app:layout_constraintEnd_toEndOf="@id/btnFeatureOne"
         app:layout_constraintStart_toStartOf="@id/btnFeatureOne"
-        tools:listitem="@layout/managers_single_item"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/managers_single_item" />
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rvShowList"
+        app:layout_constraintEnd_toEndOf="@id/rvShowList"
+        app:layout_constraintStart_toStartOf="@id/rvShowList"
+        app:layout_constraintTop_toTopOf="@id/rvShowList" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvButtonClick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/press_button"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/rvShowList"
+        app:layout_constraintEnd_toEndOf="@id/rvShowList"
+        app:layout_constraintStart_toStartOf="@id/rvShowList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

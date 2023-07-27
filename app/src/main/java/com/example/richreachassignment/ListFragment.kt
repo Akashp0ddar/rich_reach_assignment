@@ -1,13 +1,18 @@
 package com.example.richreachassignment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.richreachassignment.databinding.FragmentListBinding
 import com.example.richreachassignment.repository.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {
@@ -83,19 +88,31 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun setUpAdapter() {
         viewModel.setUpDetails()
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            binding.tvButtonClick.visibility = View.GONE
+            binding.pbLoading.visibility = View.VISIBLE
+        }
+
         if (viewModel.detailsList.isNotEmpty()) {
+
             adapter = ManagersListAdapter(
                 detailsListAdapter = viewModel.detailsList
             )
             binding.rvShowList.adapter = adapter
+
+            lifecycleScope.launch(Dispatchers.Main) {
+                binding.pbLoading.visibility = View.GONE
+            }
+
         } else {
             Toast.makeText(
                 requireContext(),
                 "Please wait for data to be loaded",
                 Toast.LENGTH_SHORT
             ).show()
+            Handler(Looper.myLooper()!!).postDelayed({ setUpAdapter() }, 2000)
         }
-        Log.d("detailsList", "setUpAdapter: ${viewModel.detailsList}")
     }
 
 
