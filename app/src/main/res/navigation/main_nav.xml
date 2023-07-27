@@ -18,5 +18,20 @@
         android:id="@+id/listFragment"
         android:name="com.example.richreachassignment.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_customQueryFragment"
+            app:destination="@id/customQueryFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/customQueryFragment"
+        android:name="com.example.richreachassignment.CustomQueryFragment"
+        android:label="fragment_custom_query"
+        tools:layout="@layout/fragment_custom_query">
+        <action
+            android:id="@+id/action_customQueryFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>

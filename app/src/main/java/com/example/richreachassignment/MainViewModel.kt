@@ -32,6 +32,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     var salariesList: List<Salaries> = listOf()
     var titlesList: List<Titles> = listOf()
     var detailsList: ArrayList<Details> = arrayListOf()
+    var query = ""
+    var isQueryNeeded = false
     private lateinit var database: DetailsDatabase
 
     fun initDataBase(context: Context) {
@@ -142,5 +144,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         return database.getAllDetails()
     }
 
+    fun getDetailsListCustomQuery(queryFromInput: String): ArrayList<Details>? {
+        return database.getListOfDetailsWithCustomQuery(query = queryFromInput)
+    }
 
 }

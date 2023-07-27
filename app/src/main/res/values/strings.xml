@@ -10,4 +10,6 @@
     <string name="time_as_manager">Time as Manager</string>
     <string name="status">Status</string>
     <string name="press_button">Please click on the show manager button to load the data for first time</string>
+    <string name="enter_you_query">Enter you Query</string>
+    <string name="submit">Submit</string>
 </resources>

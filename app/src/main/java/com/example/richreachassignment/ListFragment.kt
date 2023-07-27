@@ -1,14 +1,13 @@
 package com.example.richreachassignment
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.richreachassignment.databinding.FragmentListBinding
 import com.example.richreachassignment.repository.Repository
 import kotlinx.coroutines.Dispatchers
@@ -31,18 +30,33 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         apiCalls()
         apiResults()
         onClick()
+        customQuerySetUp()
     }
 
+    private fun customQuerySetUp() {
+        if (viewModel.isQueryNeeded) {
+            adapter =
+                ManagersListAdapter(detailsListAdapter = viewModel.getDetailsListFromDataBase())
+            binding.rvShowList.adapter = adapter
+            adapter.notifyDataSetChanged()
+            binding.pbLoading.visibility = View.GONE
+            binding.tvButtonClick.visibility = View.GONE
+        }
+    }
 
 
     private fun onClick() {
         binding.btnFeatureOne.setOnClickListener {
             setUpAdapter()
         }
+
+        binding.btnQueryBuilder.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_customQueryFragment)
+        }
     }
 
     private fun apiCalls() {
-        if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+        if (viewModel.getDetailsListFromDataBase().isNotEmpty() && !viewModel.isQueryNeeded) {
             adapter =
                 ManagersListAdapter(detailsListAdapter = viewModel.getDetailsListFromDataBase())
             binding.rvShowList.adapter = adapter
@@ -122,7 +136,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 "Please wait for data to be loaded",
                 Toast.LENGTH_SHORT
             ).show()
-            Handler(Looper.myLooper()!!).postDelayed({ setUpAdapter() }, 2000)
+
         }
     }
 

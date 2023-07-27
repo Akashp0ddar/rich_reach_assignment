@@ -104,5 +104,52 @@ class DetailsDatabase(context: Context) : SQLiteOpenHelper(
         return detailsList
     }
 
+    fun getListOfDetailsWithCustomQuery(query: String): ArrayList<Details>? {
+        val detailsList = ArrayList<Details>()
+        val db = readableDatabase
+
+        try {
+            val cursor: Cursor? = db.rawQuery(query, null)
+
+            cursor?.use {
+                // Cache column indices to avoid getColumnIndex calls inside the loop
+                val nameIndex = it.getColumnIndex("employeeName")
+                val numberIndex = it.getColumnIndex("employeeNumber")
+                val titleIndex = it.getColumnIndex("employeeTitle")
+                val departmentIndex = it.getColumnIndex("employeeDepartment")
+                val timeAsManagerIndex = it.getColumnIndex("timeSpentAsManager")
+                val isActiveIndex = it.getColumnIndex("isActive")
+
+                while (it.moveToNext()) {
+                    val employeeName = it.getString(nameIndex)
+                    val employeeNumber = it.getInt(numberIndex)
+                    val employeeTitle = it.getString(titleIndex)
+                    val employeeDepartment = it.getString(departmentIndex)
+                    val timeSpentAsManager = it.getString(timeAsManagerIndex)
+                    val isActive = it.getInt(isActiveIndex) == 1
+
+                    val details = Details(
+                        employeeName,
+                        employeeNumber,
+                        employeeTitle,
+                        employeeDepartment,
+                        timeSpentAsManager,
+                        isActive
+                    )
+                    detailsList.add(details)
+                }
+            }
+
+            cursor?.close()
+            db.close()
+        } catch (e: Exception) {
+            // Print "Query is not valid" if there's an exception (e.g., invalid SQL syntax)
+            e.printStackTrace()
+            return null
+        }
+
+        return detailsList
+    }
+
 
 }
