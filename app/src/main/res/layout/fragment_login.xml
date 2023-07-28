@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.login.LoginFragment">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNetworkText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/you_need_to_connect_to_internet_to_login"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"

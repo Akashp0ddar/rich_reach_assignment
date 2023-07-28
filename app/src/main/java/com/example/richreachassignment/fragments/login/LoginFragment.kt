@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -41,9 +42,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
         viewModel.initDataBase(context = requireContext())
+        viewModel.networkObservation(context = requireContext())
+        viewsSetup()
         registerLaunchers()
         fireBaseSetup()
         onClick()
+    }
+
+    private fun viewsSetup() {
+        viewModel.activeNetworkStatus.observe(requireActivity()) { networkStatus ->
+            binding.tvNetworkText.isVisible = !networkStatus
+        }
     }
 
     private fun registerLaunchers() {
@@ -108,10 +117,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun onClick() {
 
         binding.btnLogin.setOnClickListener {
-            if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
-                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+            if (viewModel.activeNetworkStatus.value == true) {
+
+                if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+                    findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                } else {
+                    signInGoogle()
+                }
             } else {
-                signInGoogle()
+                Toast.makeText(
+                    requireContext(),
+                    "Please connect to the internet",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
