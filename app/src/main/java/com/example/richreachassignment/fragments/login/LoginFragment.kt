@@ -51,7 +51,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun viewsSetup() {
         viewModel.activeNetworkStatus.observe(requireActivity()) { networkStatus ->
-            binding.tvNetworkText.isVisible = !networkStatus
+            if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+                binding.tvNetworkText.isVisible = false
+            } else {
+                binding.tvNetworkText.isVisible = !networkStatus
+            }
         }
     }
 
@@ -125,11 +129,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     signInGoogle()
                 }
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Please connect to the internet",
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (viewModel.getDetailsListFromDataBase().isNotEmpty()) {
+                    findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+
+                } else {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Please connect to the internet",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
