@@ -1,4 +1,4 @@
-package com.example.richreachassignment
+package com.example.richreachassignment.fragments.customquery
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.richreachassignment.MainViewModel
+import com.example.richreachassignment.R
+import com.example.richreachassignment.ViewModelFactory
 import com.example.richreachassignment.databinding.FragmentCustomQueryBinding
 import com.example.richreachassignment.repository.Repository
 

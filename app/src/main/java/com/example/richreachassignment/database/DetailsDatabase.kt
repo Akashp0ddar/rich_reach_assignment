@@ -1,4 +1,4 @@
-package com.example.richreachassignment
+package com.example.richreachassignment.database
 
 import android.content.ContentValues
 import android.content.Context

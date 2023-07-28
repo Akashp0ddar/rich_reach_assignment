@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.richreachassignment.database.DetailsDatabase
 import com.example.richreachassignment.models.DepartmentManager
 import com.example.richreachassignment.models.Departments
 import com.example.richreachassignment.models.Details

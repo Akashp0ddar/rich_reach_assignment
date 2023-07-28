@@ -1,4 +1,4 @@
-package com.example.richreachassignment
+package com.example.richreachassignment.fragments.list.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.richreachassignment.LoginFragment"
+        android:name="com.example.richreachassignment.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.richreachassignment.ListFragment"
+        android:name="com.example.richreachassignment.fragments.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/customQueryFragment"
-        android:name="com.example.richreachassignment.CustomQueryFragment"
+        android:name="com.example.richreachassignment.fragments.customquery.CustomQueryFragment"
         android:label="fragment_custom_query"
         tools:layout="@layout/fragment_custom_query">
         <action

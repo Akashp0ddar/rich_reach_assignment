@@ -1,4 +1,4 @@
-package com.example.richreachassignment
+package com.example.richreachassignment.fragments.list
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.richreachassignment.MainViewModel
+import com.example.richreachassignment.R
+import com.example.richreachassignment.ViewModelFactory
 import com.example.richreachassignment.databinding.FragmentListBinding
+import com.example.richreachassignment.fragments.list.adapters.ManagersListAdapter
 import com.example.richreachassignment.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
