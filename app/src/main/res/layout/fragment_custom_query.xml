@@ -15,6 +15,7 @@
         android:background="@drawable/outline_bg_black"
         android:hint="@string/enter_you_query"
         android:padding="10dp"
+        android:singleLine="true"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +31,109 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/etQueryInput"
         app:layout_constraintStart_toStartOf="@id/etQueryInput" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTableStructureTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/please_refer_the_below_table_structure_you_if_find_any_problem_for_writing_query"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/etQueryInput"
+        app:layout_constraintStart_toStartOf="@id/etQueryInput"
+        app:layout_constraintTop_toBottomOf="@id/etQueryInput" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTableStructureDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/table_structure_for_details"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTableStructureTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvColumnName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/column_name_data_type"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTableStructureDetails" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDottedLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/dotted_line"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/tvColumnName"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvColumnName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/employeename_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvDottedLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/employeenumber_integer"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/employeetitle_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeNumber" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeDept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/employeedept_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmployeeAsManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/timeasmanager_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeDept" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvIsActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/is_active_integer"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/tvTableStructureTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeAsManager" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -151,5 +151,4 @@ class DetailsDatabase(context: Context) : SQLiteOpenHelper(
         return detailsList
     }
 
-
 }

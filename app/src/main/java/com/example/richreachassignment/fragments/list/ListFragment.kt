@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.richreachassignment.MainViewModel
 import com.example.richreachassignment.R
@@ -14,8 +14,6 @@ import com.example.richreachassignment.ViewModelFactory
 import com.example.richreachassignment.databinding.FragmentListBinding
 import com.example.richreachassignment.fragments.list.adapters.ManagersListAdapter
 import com.example.richreachassignment.repository.Repository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {
@@ -37,6 +35,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         customQuerySetUp()
     }
 
+
     private fun customQuerySetUp() {
         if (viewModel.isQueryNeeded) {
             adapter =
@@ -47,15 +46,20 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 )
             binding.rvShowList.adapter = adapter
             adapter.notifyDataSetChanged()
-            binding.pbLoading.visibility = View.GONE
-            binding.tvButtonClick.visibility = View.GONE
+            viewVisibility(buttonClickText = false)
         }
     }
 
 
     private fun onClick() {
         binding.btnFeatureOne.setOnClickListener {
-            setUpAdapter()
+            if (viewModel.detailsList.isNotEmpty()) {
+                Toast.makeText(requireContext(), "Data is already loaded", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                viewVisibility(buttonClickText = false)
+                setUpAdapter()
+            }
         }
 
         binding.btnQueryBuilder.setOnClickListener {
@@ -68,8 +72,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             adapter =
                 ManagersListAdapter(detailsListAdapter = viewModel.getDetailsListFromDataBase())
             binding.rvShowList.adapter = adapter
-            binding.pbLoading.visibility = View.GONE
-            binding.tvButtonClick.visibility = View.GONE
+            viewVisibility(buttonClickText = false)
         } else {
             viewModel.getDepartmentManagers()
             viewModel.getDepartments()
@@ -121,11 +124,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private fun setUpAdapter() {
         viewModel.setUpDetails()
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            binding.tvButtonClick.visibility = View.GONE
-            binding.pbLoading.visibility = View.VISIBLE
-        }
-
+        viewVisibility(buttonClickText = false)
 
         if (viewModel.detailsList.isNotEmpty()) {
 
@@ -134,9 +133,6 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             )
             binding.rvShowList.adapter = adapter
 
-            lifecycleScope.launch(Dispatchers.Main) {
-                binding.pbLoading.visibility = View.GONE
-            }
 
         } else {
             Toast.makeText(
@@ -144,9 +140,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 "Please wait for data to be loaded",
                 Toast.LENGTH_SHORT
             ).show()
-
         }
     }
 
+
+    private fun viewVisibility(buttonClickText: Boolean) {
+        binding.tvButtonClick.isVisible = buttonClickText
+    }
 
 }

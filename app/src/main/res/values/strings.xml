@@ -12,4 +12,14 @@
     <string name="press_button">Please click on the show manager button to load the data for first time</string>
     <string name="enter_you_query">Enter you Query</string>
     <string name="submit">Submit</string>
+    <string name="please_refer_the_below_table_structure_you_if_find_any_problem_for_writing_query">Please refer the below table structure you if find any problem for writing query</string>
+    <string name="table_structure_for_details">Table Structure for \'details\':</string>
+    <string name="column_name_data_type">Column Name | Data Type</string>
+    <string name="dotted_line">- - - - - - - - - - - - - - - - - - - - - - - -</string>
+    <string name="employeename_text">employeeName | TEXT</string>
+    <string name="employeenumber_integer">employeeNumber | INTEGER</string>
+    <string name="employeetitle_text">employeeTitle | Text</string>
+    <string name="employeedept_text">employeeDept | Text</string>
+    <string name="timeasmanager_text">timeAsManager | Text</string>
+    <string name="is_active_integer">Is Active | Integer</string>
 </resources>

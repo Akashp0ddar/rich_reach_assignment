@@ -80,7 +80,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 GoogleAuthProvider.getCredential(signedInAccountFromIntent.result.idToken, null)
             auth.signInWithCredential(credential).addOnCompleteListener { taskAuthResult ->
                 if (taskAuthResult.isSuccessful) {
-                    Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_listFragment)
                 } else {
                     Log.d("firebaseError", "handleResult:${taskAuthResult.exception} ")
